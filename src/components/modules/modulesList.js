@@ -1,22 +1,24 @@
-
-import moduleItem from './moduleItem.js';
+import CardContainer from '../UI/CardContainer';
+import Card from './Card';
 import classes from './modulesList.css';
 
-function moduleList(props) {
+export function ModuleList(props) {
     return (
-    <ul className={classes.list}>
-    {props.modules.map(module => 
-        <moduleItem 
-        key={module.ModuleID} 
-        id={module.ModuleID} 
-        moduleImage={module.ModuleImage} 
-        moduleName={module.ModuleName} 
-        moduleCode={module.moduleCode}
-        moduleLevel={module.ModuleLevel}
-        />
-        )}
-    </ul>
+        <CardContainer className={classes.list}>
+            {
+                props.modules.map(module => 
+                    <Card 
+                        key={module.ModuleID} 
+                        module = {module}
+                        
+                    />
+                )
+            }
+        </CardContainer>
     );
 }
 
-export default moduleList;
+
+
+
+export default ModuleList;
