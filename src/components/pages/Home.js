@@ -1,3 +1,11 @@
+//import moduleList from '../modulesList';
+import modules from '../../modules.js';
+
+import { moduleList } from './modules/modulesList.js';
+
+
+
+
 function Home() {
     // Properties ----------------------------
     // Hooks ---------------------------------
@@ -5,8 +13,13 @@ function Home() {
     // Methods -------------------------------
     // View ---------------------------------
 
-    return (
-        <h1>Home</h1>
+    return ( <section>
+
+        <h1>All Modules</h1>
+    
+        <moduleList module={modules} /> 
+
+        </section>
     )
 
 }
