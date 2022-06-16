@@ -1,14 +1,14 @@
 //import moduleList from '../modulesList';
-import modules from '../../modules.js';
+import modules from '../data/modules';
 
-import { ModuleList } from '../modules/modulesList.js';
-
-
+import { ModuleList } from '../modules/ModuleList.js';
 
 
 
 
-function Home() {
+
+
+function MyModules() {
     // Properties ----------------------------
     // Hooks ---------------------------------
     // Context -------------------------------
@@ -37,4 +37,4 @@ function Home() {
 
 }
 
-export default Home;
+export default MyModules;

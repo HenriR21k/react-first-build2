@@ -1,6 +1,6 @@
 import CardContainer from '../UI/CardContainer';
 import Card from './Card';
-import classes from './modulesList.css';
+import classes from './ModuleList.css';
 
 export function ModuleList(props) {
     return (

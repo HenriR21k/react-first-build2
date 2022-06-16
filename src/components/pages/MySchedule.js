@@ -1,4 +1,4 @@
-function SignIn() {
+function MySchedule() {
     // Properties ----------------------------
     // Hooks ---------------------------------
     // Context -------------------------------
@@ -6,9 +6,9 @@ function SignIn() {
     // View ---------------------------------
 
     return (
-        <h1>Sign In</h1>
+        <h1>My Schedule</h1>
     )
 
 }
 
-export default SignIn;
+export default MySchedule;

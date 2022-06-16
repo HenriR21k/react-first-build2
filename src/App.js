@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Layout from './components/layouts/Layout.js'
-import Home from './components/pages/Home.js';
-import SignIn from './components/pages/SignIn.js';
-import ContactUs from './components/pages/ContactUs';
+import MyModules from './components/pages/MyModules.js';
+import MyAssessment from './components/pages/MyAssessment.js';
+import ContactUs from './components/pages/MySchedule';
 import PageNotFound from './components/pages/404.js';
 
 
@@ -18,8 +18,8 @@ function App() {
       <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path='/' element={<Home />}/>
-          <Route path='/signin' element={<SignIn />}/>
+          <Route path='/' element={<MyModules />}/>
+          <Route path='/MyAssessment' element={<MyAssessment />}/>
           <Route path='/contact' element={<ContactUs />}/>
           <Route path='*' element={<PageNotFound />}/>
         </Routes>

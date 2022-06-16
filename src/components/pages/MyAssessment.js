@@ -1,4 +1,4 @@
-function ContactUs() {
+function MyAssessment() {
     // Properties ----------------------------
     // Hooks ---------------------------------
     // Context -------------------------------
@@ -6,9 +6,9 @@ function ContactUs() {
     // View ---------------------------------
 
     return (
-        <h1>Contact Us</h1>
+        <h1>My Assessment</h1>
     )
 
 }
 
-export default ContactUs;
+export default MyAssessment;
