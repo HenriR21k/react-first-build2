@@ -15,13 +15,13 @@ function Navbar() {
     return (
         <nav>
             <div className="navItem">
-                <NavLink to='/' className={getLinkStyle}>Home</NavLink>
+                <NavLink to='/' className={getLinkStyle}>My Modules</NavLink>
             </div>
             <div className="navItem">
-                <NavLink to='/signin' className={getLinkStyle}>Sign In</NavLink>
+                <NavLink to='/signin' className={getLinkStyle}>My Assessments</NavLink>
             </div>
             <div className="navItem">
-                <NavLink to='/contact' className={getLinkStyle}>Contact us</NavLink>
+                <NavLink to='/contact' className={getLinkStyle}>My Schedule</NavLink>
             </div>
         </nav>
 

@@ -14,7 +14,7 @@ function Header() {
                 <img src = "https://img.icons8.com/bubbles/344/bbb.png"/>
             </Link>
             <Link to="/">
-                <h1>React First Build</h1>
+                <h1>My Learning</h1>
             </Link>
             <div className = "login">
                 <p>Welcome Henri!</p>
