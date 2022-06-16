@@ -21,6 +21,7 @@
 .favouriteButton {
     margin-bottom: 15px;
     text-align: center;
+    padding: 10px;
 }
 
 .favouriteButton button {
@@ -29,14 +30,20 @@
     color: #77002e;
     border: 1px solid #77002e;
     background-color: transparent;
-    padding: 0.5rem 1.5rem;
     border-radius: 4px;
+    padding: 10px;
+    margin-right: 20px;
 }
 
 .heart{
     vertical-align: middle;
     width: 20px;
     
+}
+
+.list {
+    vertical-align: middle;
+    width: 20px;
 }
 
 .favouriteButton button:hover,

@@ -1,6 +1,6 @@
 .Card {
     margin: 0;
-    height: auto;
+    height: 375px;
     width: 300px;
     border: 2px solid black;
     border-radius: 5px;
@@ -8,7 +8,7 @@
   
   .Moduleimage {
     width: 100%;
-    height: 40%;
+    height: 50%;
     overflow: hidden;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
@@ -18,7 +18,6 @@
   .Moduleimage img {
     width: 100%;
     
-    /*object-fit: cover;*/
   }
   
   div.content {
