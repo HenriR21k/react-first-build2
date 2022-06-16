@@ -1,3 +1,13 @@
+//import moduleList from '../modulesList';
+import modules from '../../modules.js';
+
+import { ModuleList } from '../modules/modulesList.js';
+
+
+
+
+
+
 function Home() {
     // Properties ----------------------------
     // Hooks ---------------------------------
@@ -5,8 +15,24 @@ function Home() {
     // Methods -------------------------------
     // View ---------------------------------
 
-    return (
-        <h1>Home</h1>
+    return ( 
+        
+            <section>
+                
+                <div className="heading">All Modules</div>
+
+                <div className = "favouriteButton">
+                    <button> <img class = "heart" src ="https://cdn-icons.flaticon.com/png/512/2589/premium/2589175.png?token=exp=1655390263~hmac=70dae7f22c500d0cc77ad17858ce2aee" alt = "heart"/> List Favourites</button>
+                    <button> <img class = "list" src ="https://img.icons8.com/material-outlined/344/list.png" alt ="list" /> List all</button>
+                </div>
+                
+                
+            
+                <ModuleList modules={modules} /> 
+            
+
+            </section>
+    
     )
 
 }
