@@ -5,7 +5,8 @@ import './Card.css';
 
 function Card({module}) {
 
-
+    //Create a boolean function for handling favourites
+    //then use that to swap the buttons display.
 
 
     return ( 
@@ -19,7 +20,7 @@ function Card({module}) {
                 <p>Module Level: {module.ModuleLevel}</p>
             </div>
             <div className="actions">
-                {/* if module favourite is true, Display button remove from favourites, else Add to favourites */}
+                {/* if module favourite is true, Display button remove from favourites /call removeButtonFunction, else Add to favourites /addFavouriteFunction  */}
                 <button>Add To Favourites</button>
             </div>
         </div>
