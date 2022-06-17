@@ -14,6 +14,7 @@ export let modules = [
     ModuleLevel: 7,
     ModuleLeaderID: 2,
     ModuleImage: "https://images.freeimages.com/images/small-previews/411/light-of-technology-1510575.jpg"
+    
   },
   {
     ModuleID: 3,

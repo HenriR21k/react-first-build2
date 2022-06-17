@@ -16,8 +16,8 @@ export function FavouritesContextProvider(props) {
     /*The three functions below revolve around changing the state*/
 
     function addFavouriteHandler(favouriteModule) {
-        setUserFavourites((prevUserFavourites) => {
-            return prevUserFavourites.concat(favouriteModule);
+        setUserFavourites((userFavourites) => {
+            return userFavourites.concat(favouriteModule);
         });
     }
     

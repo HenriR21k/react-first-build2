@@ -23,12 +23,9 @@ function Card({module}) {
             favouriteContextObj.removeFavourite(module.ModuleID);
         }
         else {
-            favouriteContextObj.addFavourite({module});
+            favouriteContextObj.addFavourite(module);
         }
-
-
     }
-
 
     return ( 
         <div className="Card">
