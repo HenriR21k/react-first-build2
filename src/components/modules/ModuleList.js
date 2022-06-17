@@ -1,6 +1,6 @@
 import CardContainer from '../UI/CardContainer';
 import Card from './Card';
-import classes from './modulesList.css';
+import classes from './ModuleList.css';
 
 export function ModuleList(props) {
     return (
@@ -10,7 +10,7 @@ export function ModuleList(props) {
                     <Card 
                         key={module.ModuleID} 
                         module = {module}
-                        
+                        handlers = {props.handlers}
                     />
                 )
             }
