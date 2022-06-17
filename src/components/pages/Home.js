@@ -1,5 +1,5 @@
 //import moduleList from '../modulesList';
-import modules from '../../modules.js';
+import modules from '../data/modules';
 
 import { ModuleList } from '../modules/modulesList.js';
 
