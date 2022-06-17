@@ -11,7 +11,7 @@ function Header() {
     return (
         <header>
             <Link to="/">
-                <img src = "https://img.icons8.com/bubbles/344/bbb.png"/>
+                <img src = "https://img.icons8.com/bubbles/344/bbb.png" alt="icon"/>
             </Link>
             <Link to="/">
                 <h1>My Learning</h1>
