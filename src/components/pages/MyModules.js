@@ -1,22 +1,30 @@
 //import moduleList from '../modulesList';
-import initialModules from '../data/modules';
-import { useState } from 'react';
+import { apiRequest } from '../api/apiRequest.js';
+import { useState, useEffect } from 'react';
 import { ModuleList } from '../modules/ModuleList.js';
-
-
-
-
-
 
 function Home() {
     // Properties ----------------------------
+
+    const API_URL = 'https://my.api.mockaroo.com/';
+    const API_KEY = '?key=bb6adbc0';
+
     // Hooks ---------------------------------
 
-    //utilise useStates here
-    const [modules, setModules] = useState(initialModules)
+    const [loadingMessage, setLoadingMessage] = useState("Loading records ...");
+    const [modules, setModules] = useState(null)
+
+    useEffect(() => { fetchModules() }, []);
 
     // Context -------------------------------
     // Methods -------------------------------
+
+    const fetchModules = async () => {
+      const outcome = await apiRequest(API_URL, 'Modules', API_KEY);
+      if (outcome.success) setModules (outcome.response);
+      else setLoadingMessage(`Error ${outcome.response.status}: Modules could not be found.`);
+    }
+
 
     const addFavourite = (moduleId) => setModules(
         modules.map((module) => (
@@ -30,7 +38,7 @@ function Home() {
         ))
       );
 
-    const listAllModules = () => setModules(initialModules);
+    const listAllModules = () => fetchModules();
     const listAllFavourites = () => setModules(modules.filter((module) => module.favourite));
    
 
@@ -50,11 +58,16 @@ function Home() {
                     <img className = "list" src ="https://img.icons8.com/material-outlined/344/list.png" alt ="list" /> List all
                 </button>
             </div>
-            
-            <ModuleList 
-                modules={modules} 
-                handlers={{addFavourite, removeFavourite}} 
-            /> 
+              {
+                !modules
+                ? loadingMessage
+                : modules.length === 0
+                  ? <p>No Modules Found</p>
+                  : <ModuleList 
+                    modules={modules} 
+                    handlers={{addFavourite, removeFavourite}} 
+                /> 
+              }
         </>
     )
 
