@@ -6,11 +6,7 @@ import MyAssessment from './components/pages/MyAssessment.js';
 import MySchedule from './components/pages/MySchedule';
 import PageNotFound from './components/pages/404.js';
 
-
 import './App.css';
-
-
-
 
 function App() {
   return (
