@@ -6,14 +6,7 @@ import "./ModuleForm.css";
 
 function ModuleForm (props) {
   // Properties ----------------------------
-/*  let initialModules = [
-    {
-      ModuleName: "",
-      ModuleCode: "",
-      ModuleLevel: 0,
-      ModuleLeaderID: 0,
-      ModuleImage: ""
-    }];*/
+
   // State ---------------------------------
   const [module, setModule] = useState(null);
 
