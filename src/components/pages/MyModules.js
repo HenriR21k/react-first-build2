@@ -2,6 +2,9 @@
 import { apiRequest } from '../api/apiRequest.js';
 import { useState, useEffect } from 'react';
 import { ModuleList } from '../modules/ModuleList.js';
+import ModuleForm from "../modules/ModuleForm";
+
+import Button from "../UI/Button";
 
 function Home() {
     // Properties ----------------------------
@@ -13,7 +16,21 @@ function Home() {
 
     const [loadingMessage, setLoadingMessage] = useState("Loading records ...");
     const [modules, setModules] = useState(null)
+    const [viewModuleForm, setViewModuleForm] = useState(false)
 
+    const setModuleFormVisibility = () => {
+      setViewModuleForm(true);
+    }
+
+    const handleAddModule = (newModule) => {
+      newModule.ModuleID = modules.length+1;
+      setModules([...modules, newModule]);
+    }
+
+    const cancelModuleForm = () => {
+      setViewModuleForm(false);
+    }
+    
     useEffect(() => { fetchModules() }, []);
 
     // Context -------------------------------
@@ -40,23 +57,53 @@ function Home() {
 
     const listAllModules = () => fetchModules();
     const listAllFavourites = () => setModules(modules.filter((module) => module.favourite));
-   
-
-
 
     // View ---------------------------------
 
     return (     
         <>
             <div className="heading">All Modules</div>
+            {
+              viewModuleForm && 
+                <ModuleForm 
+                  onAdd = {handleAddModule}
+                  onCancel = {cancelModuleForm}
+                />
+            } 
 
             <div className = "favouriteButton">
-                <button onClick={listAllFavourites}> 
-                    <img className = "heart" src ="https://cdn-icons.flaticon.com/png/512/2589/premium/2589175.png?token=exp=1655390263~hmac=70dae7f22c500d0cc77ad17858ce2aee" alt = "heart"/> List Favourites
-                </button>
-                <button onClick={listAllModules}> 
-                    <img className = "list" src ="https://img.icons8.com/material-outlined/344/list.png" alt ="list" /> List all
-                </button>
+                
+                <Button
+                className = "ListAllModules"
+                img = "https://img.icons8.com/material-outlined/344/list.png"
+                alt = ""
+                title = "List all"
+                onClick = {listAllModules}
+                type = "Button"
+                ></Button>
+
+                <Button
+                 className = "favouriteButtons"
+                 img = /*"https://cdn-icons.flaticon.com/png/512/2589/premium/2589175.png?token=exp=1655390263~hmac=70dae7f22c500d0cc77ad17858ce2aee"*/ ""
+                 alt = ""
+                 title = "List Favourites"
+                 onClick={listAllFavourites}
+                 type = "Button"
+                 >
+                </Button>
+
+                <Button
+                className = "addModuleButton"
+                img = ""
+                alt = ""
+                title = "Add Module"
+                onClick= {setModuleFormVisibility}
+                type = "Button"
+                >
+               </Button>
+
+
+
             </div>
               {
                 !modules
