@@ -30,7 +30,7 @@ function Home() {
     const cancelModuleForm = () => {
       setViewModuleForm(false);
     }
-
+    
     useEffect(() => { fetchModules() }, []);
 
     // Context -------------------------------
