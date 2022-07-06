@@ -10,35 +10,74 @@ function ModuleForm (props) {
   // State ---------------------------------
   const [module, setModule] = useState(null);
 
+  const [moduleNameError, setModuleNameError] = useState(false);
+  const [moduleCodeError, setModuleCodeError] = useState(false);
+
   // Methods -------------------------------
-  const handleSubmit = (event) => {
+
+  const handleModuleNameError = async () => {
+    console.log(module.ModuleName.length);
+
+    {module.ModuleName.length < 5 
+    ? setModuleNameError(true)
+    : setModuleNameError(false);
+    }
+  }
+
+  const handleModuleCodeError = async () => {
+
+    module.ModuleCode.length < 5 
+    ? setModuleCodeError("Error: Module Code must be longer than 5 characters")
+    : setModuleCodeError(null);
+
+  }
+
+
+
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    props.onAdd(module);
-    props.onCancel();
+    await (
+      handleModuleNameError(),
+      handleModuleCodeError()
+    )
+
+    
+    //handleModuleCodeError();
+
+    if (moduleNameError && moduleCodeError)
+    {
+      props.onAdd(module);
+      props.onCancel();
+    }    
+    else 
+    {
+      console.log("hi");
+    }
+
+
+    //props.onAdd(module);
+    //props.onCancel();
+
+
   };
 
   const handleChange = (event) => {
     const updatedModule = {...module, [event.target.name]: event.target.value};
+    setModule(updatedModule);
     
-    setModule(updatedModule)
-
-    console.log(event);
-    console.log(event.target.name);
-    console.log(event.target.value);
-    console.log(updatedModule);
   };
 
   
   
  
   // View ----------------------------------
-  const error = "cant say poo";
+  
   return (
 
     <body>
       <Form onSubmit={handleSubmit}>
-        <FormInput name = "ModuleName" placeholder = "Programming..." label = "Module Name" onChange={handleChange} error={null}/>
-        <FormInput name = "ModuleCode" placeholder = "CI2530..." label = "Module Code" onChange={handleChange}/>
+        <FormInput name = "ModuleName" placeholder = "Programming..." label = "Module Name" onChange={handleChange} error={moduleNameError && "Module Name cannot be shorter than 5 characters"}  />
+        <FormInput name = "ModuleCode" placeholder = "CI2530..." label = "Module Code" onChange={handleChange} error={moduleCodeError}/>
         <FormSelect name = "ModuleLevel" label = "Module Level" onChange={handleChange} >
           <option>1</option>
           <option>2</option>
