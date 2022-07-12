@@ -17,18 +17,40 @@ function Home() {
     const [loadingMessage, setLoadingMessage] = useState("Loading records ...");
     const [modules, setModules] = useState(null)
     const [viewModuleForm, setViewModuleForm] = useState(false)
+    const [SingleModule, setSingleModule] = useState(null)
+    
 
     const setModuleFormVisibility = () => {
       setViewModuleForm(true);
     }
 
     const handleAddModule = (newModule) => {
-      newModule.ModuleID = modules.length+1;
-      setModules([...modules, newModule]);
+
+
+      {
+        console.log(newModule.ModuleID);
+        !newModule.ModuleID
+          ? setModules([...modules, newModule])
+          : setModules(modules.map((mappedModule) =>
+            mappedModule.ModuleID === newModule.ModuleID
+              ? newModule
+              : mappedModule 
+              ))
+      }
+      cancelModuleForm();
+
     }
 
     const cancelModuleForm = () => {
       setViewModuleForm(false);
+      setSingleModule(null);
+      
+    }
+
+    const handleEdit = (module) => {
+      console.log(module.ModuleID);
+      setSingleModule(module);
+      setViewModuleForm(true);
     }
     
     useEffect(() => { fetchModules() }, []);
@@ -68,6 +90,7 @@ function Home() {
                 <ModuleForm 
                   onAdd = {handleAddModule}
                   onCancel = {cancelModuleForm}
+                  module = {SingleModule} 
                 />
             } 
 
@@ -112,7 +135,7 @@ function Home() {
                   ? <p>No Modules Found</p>
                   : <ModuleList 
                     modules={modules} 
-                    handlers={{addFavourite, removeFavourite}} 
+                    handlers={{addFavourite, removeFavourite, handleEdit}} 
                 /> 
               }
         </>

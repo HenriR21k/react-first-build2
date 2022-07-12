@@ -5,6 +5,7 @@ function Card({module, handlers}) {
 
     const handleAdd = () => handlers.addFavourite(module.ModuleID);
     const handleRemove = () => handlers.removeFavourite(module.ModuleID);
+		const handleEdit = () => handlers.handleEdit(module);
 
     return ( 
         <div className="Card">
@@ -21,6 +22,7 @@ function Card({module, handlers}) {
                 <h1>{module.ModuleName}</h1>
                 <p>Module Code: {module.ModuleCode}</p>
                 <p>Module Level: {module.ModuleLevel}</p>
+								<p>Module Leader ID: {module.ModuleLeaderID} </p>
             </div>
             
             <div className="actions">
@@ -29,7 +31,10 @@ function Card({module, handlers}) {
                         ? <button onClick={handleRemove}> Remove from Favourites </button>
                         : <button onClick={handleAdd}> Add to Favourites </button>
                 }
+                  <button onClick={handleEdit}>Edit Module</button>
             </div>
+
+           
 
         </div>
     );
