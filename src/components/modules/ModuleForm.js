@@ -16,37 +16,35 @@ function ModuleForm (props) {
   const [module, setModule] = useState(null);
   const [moduleNameError, setModuleNameError] = useState(null);
   const [moduleCodeError, setModuleCodeError] = useState(null);
-  
+
 
   // Methods -------------------------------
 
   const handleDefaultValue = (moduleObjectValue) => {
 
-    
-
-    if (props.module === null)
+    if (module === null)
     {
       return "";
     }
     else if (moduleObjectValue === "ModuleName")
     {
-          return props.module.ModuleName;
+          return module.ModuleName;
     }
     else if (moduleObjectValue === "ModuleCode")
     {
-          return props.module.ModuleCode;
+          return module.ModuleCode;
     }
     else if (moduleObjectValue === "ModuleLevel")
     {
-          return props.module.ModuleLevel;
+          return module.ModuleLevel;
     }
     else if (moduleObjectValue === "ModuleLeaderID")
     {
-          return props.module.ModuleLeaderID;
+          return module.ModuleLeaderID;
     }
-    else if (moduleObjectValue === "ModuleImage")
+    else if (moduleObjectValue === "ModuleImageURL")
     {
-          return props.module.ModuleImage;
+          return module.ModuleImageURL;
     }
    
 
@@ -66,11 +64,7 @@ function ModuleForm (props) {
     ? setModuleNameError("Error: Module Name must be longer than 5 characters")
     : setModuleNameError(null);
     
-
-
   }
-
-  
 
   const handleModuleCodeError = () => {
 
@@ -93,7 +87,6 @@ function ModuleForm (props) {
         && props.onAdd(module);
         
       }
-
   };
 
   const handleChange = (event) => {
@@ -132,7 +125,7 @@ function ModuleForm (props) {
         }
         
 
-        <FormInput name = "ModuleImage" placeholder = "Enter URL..." label = "Module Image URL" defaultValue = {handleDefaultValue("ModuleImage")} onChange={handleChange}/>
+        <FormInput name = "ModuleImageURL" placeholder = "Enter URL..." label = "Module Image URL" defaultValue = {handleDefaultValue("ModuleImage")} onChange={handleChange}/>
 
         <Button
           className = "submitBtn"

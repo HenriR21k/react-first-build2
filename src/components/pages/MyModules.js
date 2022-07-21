@@ -26,7 +26,6 @@ function Home() {
 
     const handleAddModule = (newModule) => {
 
-
       {
         console.log(newModule.ModuleID);
         !newModule.ModuleID
@@ -90,7 +89,7 @@ function Home() {
                 <ModuleForm 
                   onAdd = {handleAddModule}
                   onCancel = {cancelModuleForm}
-                  module = {SingleModule} 
+                  module = {SingleModule}
                 />
             } 
 

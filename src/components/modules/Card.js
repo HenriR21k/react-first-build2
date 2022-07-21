@@ -5,7 +5,7 @@ function Card({module, handlers}) {
 
     const handleAdd = () => handlers.addFavourite(module.ModuleID);
     const handleRemove = () => handlers.removeFavourite(module.ModuleID);
-		const handleEdit = () => handlers.handleEdit(module);
+	const handleEdit = () => handlers.handleEdit(module);
 
     return ( 
         <div className="Card">
@@ -15,7 +15,7 @@ function Card({module, handlers}) {
             }
 
             <div className="Moduleimage">
-                <img src={module.ModuleImage} alt={module.ModuleName} />
+                <img src={module.ModuleImageURL} alt={module.ModuleName} />
             </div>
             
             <div className="content">
