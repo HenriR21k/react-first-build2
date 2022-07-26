@@ -1,5 +1,5 @@
 //import moduleList from '../modulesList';
-import { apiRequest } from '../api/apiRequest.js';
+import { API } from '../api/apiRequest.js';
 import { useState, useEffect } from 'react';
 import { ModuleList } from '../modules/ModuleList.js';
 import ModuleForm from "../modules/ModuleForm";
@@ -9,8 +9,7 @@ import Button from "../UI/Button";
 function Home() {
     // Properties ----------------------------
 
-    const API_URL = 'https://my.api.mockaroo.com/';
-    const API_KEY = '?key=bb6adbc0';
+    
 
     // Hooks ---------------------------------
 
@@ -24,21 +23,27 @@ function Home() {
       setViewModuleForm(true);
     }
 
-    const handleAddModule = (newModule) => {
+    const handleModulePost = async (newModule) => {
 
-      {
-        console.log(newModule.ModuleID);
-        !newModule.ModuleID
-          ? setModules([...modules, newModule])
-          : setModules(modules.map((mappedModule) =>
-            mappedModule.ModuleID === newModule.ModuleID
-              ? newModule
-              : mappedModule 
-              ))
-      }
-      cancelModuleForm();
+    //first implement a basic post. Need to pass the current module and endpoint
+
+      console.log("input "+JSON.stringify(newModule)); 
+      const outcome = await API.post('Modules', newModule);
+      outcome.success && cancelModuleForm();
+      console.log("outcome "+JSON.stringify(outcome.response));
+      fetchModules();
 
     }
+
+    const handleModulePut = async (newModule, id) => {
+
+        console.log("input "+JSON.stringify(newModule)); 
+        const outcome = await API.put('Modules/'+id, newModule);
+        outcome.success && cancelModuleForm();
+        console.log("outcome "+JSON.stringify(outcome.response));
+        fetchModules();
+  
+      }
 
     const cancelModuleForm = () => {
       setViewModuleForm(false);
@@ -58,7 +63,7 @@ function Home() {
     // Methods -------------------------------
 
     const fetchModules = async () => {
-      const outcome = await apiRequest(API_URL, 'Modules', API_KEY);
+      const outcome = await API.get('Modules');
       if (outcome.success) setModules (outcome.response);
       else setLoadingMessage(`Error ${outcome.response.status}: Modules could not be found.`);
     }
@@ -87,7 +92,7 @@ function Home() {
             {
               viewModuleForm && 
                 <ModuleForm 
-                  onAdd = {handleAddModule}
+                  onAdd = {handleModulePost}
                   onCancel = {cancelModuleForm}
                   module = {SingleModule}
                 />
