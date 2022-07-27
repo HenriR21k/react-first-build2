@@ -9,58 +9,20 @@ import Button from "../UI/Button";
 function Home() {
     // Properties ----------------------------
 
-    
-
     // Hooks ---------------------------------
 
     const [loadingMessage, setLoadingMessage] = useState("Loading records ...");
     const [modules, setModules] = useState(null)
     const [viewModuleForm, setViewModuleForm] = useState(false)
     const [SingleModule, setSingleModule] = useState(null)
+
+    useEffect(() => { fetchModules() }, []);
     
+    // Methods -------------------------------
 
     const setModuleFormVisibility = () => {
       setViewModuleForm(true);
     }
-
-    const handleModulePost = async (newModule) => {
-
-    //first implement a basic post. Need to pass the current module and endpoint
-
-      console.log("input "+JSON.stringify(newModule)); 
-      const outcome = await API.post('Modules', newModule);
-      outcome.success && cancelModuleForm();
-      console.log("outcome "+JSON.stringify(outcome.response));
-      fetchModules();
-
-    }
-
-    const handleModulePut = async (newModule, id) => {
-
-        console.log("input "+JSON.stringify(newModule)); 
-        const outcome = await API.put('Modules/'+id, newModule);
-        outcome.success && cancelModuleForm();
-        console.log("outcome "+JSON.stringify(outcome.response));
-        fetchModules();
-  
-      }
-
-    const cancelModuleForm = () => {
-      setViewModuleForm(false);
-      setSingleModule(null);
-      
-    }
-
-    const handleEdit = (module) => {
-      console.log(module.ModuleID);
-      setSingleModule(module);
-      setViewModuleForm(true);
-    }
-    
-    useEffect(() => { fetchModules() }, []);
-
-    // Context -------------------------------
-    // Methods -------------------------------
 
     const fetchModules = async () => {
       const outcome = await API.get('Modules');
@@ -68,7 +30,52 @@ function Home() {
       else setLoadingMessage(`Error ${outcome.response.status}: Modules could not be found.`);
     }
 
+    const handleModulePost = async (newModule) => {
 
+      console.log("input of post: "+JSON.stringify(newModule)); 
+      const outcome = await API.post('Modules', newModule);
+      outcome.success && cancelModuleForm();
+      console.log("outcome of post: "+JSON.stringify(outcome.response));
+      fetchModules();
+
+    }
+
+    const handleModulePut = async (newModule) => {
+
+        console.log("input of put: "+JSON.stringify(newModule)); 
+        const outcome = await API.put('Modules/'+newModule.ModuleID, newModule);
+        outcome.success && cancelModuleForm();
+        console.log("outcome of put: "+JSON.stringify(outcome.response));        
+        fetchModules();
+  
+      }
+
+    
+
+    //rethink - needs ID to delete with, but we passed in the obj, maybe use newModule.oduleId
+    const handleModuleDelete = async (newModule) => {
+
+
+
+    }
+
+    const setEdit = (module) => {
+      setSingleModule(module);
+      setViewModuleForm(true); 
+    }
+
+    const cancelModuleForm = () => {
+      setViewModuleForm(false);
+      setSingleModule(null);
+      
+    }
+
+    //unused
+    const handleEdit = (module) => {
+      setSingleModule(module);
+      setViewModuleForm(true);
+    }
+    
     const addFavourite = (moduleId) => setModules(
         modules.map((module) => (
           module.ModuleID === moduleId ? { ...module, favourite: true } : module
@@ -92,7 +99,8 @@ function Home() {
             {
               viewModuleForm && 
                 <ModuleForm 
-                  onAdd = {handleModulePost}
+                  onPost = {handleModulePost}
+                  onPut = {handleModulePut}
                   onCancel = {cancelModuleForm}
                   module = {SingleModule}
                 />
@@ -139,7 +147,7 @@ function Home() {
                   ? <p>No Modules Found</p>
                   : <ModuleList 
                     modules={modules} 
-                    handlers={{addFavourite, removeFavourite, handleEdit}} 
+                    handlers={{addFavourite, removeFavourite, setEdit}} 
                 /> 
               }
         </>

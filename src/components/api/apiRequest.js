@@ -5,6 +5,8 @@ export const API = {};
 API.get = (endpoint) => apiRequest(endpoint, 'GET', null);
 API.post = (endpoint, data) => apiRequest(endpoint, 'POST', data);
 API.put = (endpoint, data) => apiRequest(endpoint, "PUT", data);
+API.delete = (endpoint) => apiRequest(endpoint, 'DELETE', null);
+
 
 const apiRequest = async (endpoint, method, body) => {
 

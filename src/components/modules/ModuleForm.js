@@ -77,21 +77,31 @@ function ModuleForm (props) {
 
   useEffect(() => {setModule(props.module)}, []);
 
-  
-
   const handleSubmit = async (event) => {
     event.preventDefault()
-    
+    console.log(props.module.ModuleID);
+    if (module.ModuleID) {
+      
       {(moduleNameError === null && moduleCodeError === null)
-        && props.onAdd(module);
-        
-      }
-  };
+        && props.onPut(module);}
+
+    }
+    else {
+      
+      {(moduleNameError === null && moduleCodeError === null)
+        && props.onPost(module);}
+      
+    }
+      
+      
+    }
+
+  
 
   const handleChange = (event) => {
     const updatedModule = {...module, [event.target.name]: event.target.value};
     setModule(updatedModule);
-    console.log("input "+JSON.stringify(updatedModule)); 
+    console.log("input of change: "+JSON.stringify(updatedModule)); 
     event.target.name === "ModuleName" && handleModuleNameError(updatedModule)
     event.target.name === "ModuleCode" && handleModuleCodeError(updatedModule)
   };
