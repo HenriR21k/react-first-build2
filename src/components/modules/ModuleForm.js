@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { apiRequest } from '../api/apiRequest.js';
+import { API } from '../api/apiRequest.js';
 import {Form, FormInput, FormSelect} from "./Form";
 import Button from "../UI/Button";
 import "./ModuleForm.css";
@@ -7,8 +7,7 @@ import "./ModuleForm.css";
 
 function ModuleForm (props) {
   // Properties ----------------------------
-    const API_URL = 'https://my.api.mockaroo.com/';
-    const API_KEY = '?key=bb6adbc0';
+
     const [users, setUsers] = useState(null);
 
   // State ---------------------------------
@@ -53,12 +52,12 @@ function ModuleForm (props) {
   useEffect(() => { fetchUsers() }, []);
 
   const fetchUsers = async () => {
-    const outcome = await apiRequest(API_URL, 'Users', API_KEY);
+    const outcome = await API.get('Users');
     if (outcome.success) setUsers (outcome.response);
     else setLoadingMessage(`Error ${outcome.response.status}: Users could not be found.`);
   }
 
-  const handleModuleNameError = () => {
+  const handleModuleNameError = (module) => {
     
     module.ModuleName.length < 5 
     ? setModuleNameError("Error: Module Name must be longer than 5 characters")
@@ -66,41 +65,52 @@ function ModuleForm (props) {
     
   }
 
-  const handleModuleCodeError = () => {
+  const handleModuleCodeError = (module) => {
 
-    module.ModuleCode.length < 5 
+    module.ModuleCode.length < 5
     ? setModuleCodeError("Error: Module Code must be longer than 5 characters")
     : setModuleCodeError(null);
 
   }
 
-  //when we add module, when we open up form, we need to fetch users, and we also need to pass module, and set the attributes. Initially the form was null and empty causing the erro
+  //when we add module, when we open up form, we need to fetch users, and we also need to pass module, and set the attributes. Initially the form was null and empty causing the error
 
   useEffect(() => {setModule(props.module)}, []);
 
-  
-
   const handleSubmit = async (event) => {
     event.preventDefault()
-    
+    console.log(props.module.ModuleID);
+    if (module.ModuleID) {
+      
       {(moduleNameError === null && moduleCodeError === null)
-        && props.onAdd(module);
-        
-      }
-  };
+        && props.onPut(module);}
+
+    }
+    else {
+      
+      {(moduleNameError === null && moduleCodeError === null)
+        && props.onPost(module);}
+      
+    }
+      
+      
+    }
+
+  
 
   const handleChange = (event) => {
     const updatedModule = {...module, [event.target.name]: event.target.value};
     setModule(updatedModule);
-    handleModuleNameError()
-    handleModuleCodeError()
+    console.log("input of change: "+JSON.stringify(updatedModule)); 
+    event.target.name === "ModuleName" && handleModuleNameError(updatedModule)
+    event.target.name === "ModuleCode" && handleModuleCodeError(updatedModule)
   };
 
   // View ----------------------------------
   
   return (
 
-    <body>
+    
       <Form onSubmit={handleSubmit}>
         <FormInput name = "ModuleName" placeholder = "Programming..." label = "Module Name" defaultValue = {handleDefaultValue("ModuleName")} onChange={handleChange} error={moduleNameError}  />
         <FormInput name = "ModuleCode" placeholder = "CI2530..." label = "Module Code" defaultValue = {handleDefaultValue("ModuleCode")} onChange={handleChange} error={moduleCodeError}/>
@@ -145,7 +155,7 @@ function ModuleForm (props) {
         ></Button>
    
       </Form>
-    </body>
+    
   )
 
 

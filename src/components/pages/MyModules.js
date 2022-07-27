@@ -1,5 +1,5 @@
 //import moduleList from '../modulesList';
-import { apiRequest } from '../api/apiRequest.js';
+import { API } from '../api/apiRequest.js';
 import { useState, useEffect } from 'react';
 import { ModuleList } from '../modules/ModuleList.js';
 import ModuleForm from "../modules/ModuleForm";
@@ -9,35 +9,58 @@ import Button from "../UI/Button";
 function Home() {
     // Properties ----------------------------
 
-    const API_URL = 'https://my.api.mockaroo.com/';
-    const API_KEY = '?key=bb6adbc0';
-
     // Hooks ---------------------------------
 
     const [loadingMessage, setLoadingMessage] = useState("Loading records ...");
     const [modules, setModules] = useState(null)
     const [viewModuleForm, setViewModuleForm] = useState(false)
     const [SingleModule, setSingleModule] = useState(null)
+
+    useEffect(() => { fetchModules() }, []);
     
+    // Methods -------------------------------
 
     const setModuleFormVisibility = () => {
       setViewModuleForm(true);
     }
 
-    const handleAddModule = (newModule) => {
+    const fetchModules = async () => {
+      const outcome = await API.get('Modules');
+      if (outcome.success) setModules (outcome.response);
+      else setLoadingMessage(`Error ${outcome.response.status}: Modules could not be found.`);
+    }
 
-      {
-        console.log(newModule.ModuleID);
-        !newModule.ModuleID
-          ? setModules([...modules, newModule])
-          : setModules(modules.map((mappedModule) =>
-            mappedModule.ModuleID === newModule.ModuleID
-              ? newModule
-              : mappedModule 
-              ))
+    const handleModulePost = async (newModule) => {
+
+      console.log("input of post: "+JSON.stringify(newModule)); 
+      const outcome = await API.post('Modules', newModule);
+      outcome.success && cancelModuleForm();
+      console.log("outcome of post: "+JSON.stringify(outcome.response));
+      fetchModules();
+
+    }
+
+    const handleModulePut = async (newModule) => {
+
+        console.log("input of put: "+JSON.stringify(newModule)); 
+        const outcome = await API.put('Modules/'+newModule.ModuleID, newModule);
+        outcome.success && cancelModuleForm();
+        console.log("outcome of put: "+JSON.stringify(outcome.response));        
+        fetchModules();
+  
       }
-      cancelModuleForm();
 
+
+    //rethink - needs ID to delete with, but we passed in the obj, maybe use newModule.oduleId
+    const handleModuleDelete = async (newModule) => {
+
+
+
+    }
+
+    const setEdit = (module) => {
+      setSingleModule(module);
+      setViewModuleForm(true); 
     }
 
     const cancelModuleForm = () => {
@@ -46,24 +69,12 @@ function Home() {
       
     }
 
+    //unused
     const handleEdit = (module) => {
-      console.log(module.ModuleID);
       setSingleModule(module);
       setViewModuleForm(true);
     }
     
-    useEffect(() => { fetchModules() }, []);
-
-    // Context -------------------------------
-    // Methods -------------------------------
-
-    const fetchModules = async () => {
-      const outcome = await apiRequest(API_URL, 'Modules', API_KEY);
-      if (outcome.success) setModules (outcome.response);
-      else setLoadingMessage(`Error ${outcome.response.status}: Modules could not be found.`);
-    }
-
-
     const addFavourite = (moduleId) => setModules(
         modules.map((module) => (
           module.ModuleID === moduleId ? { ...module, favourite: true } : module
@@ -87,7 +98,8 @@ function Home() {
             {
               viewModuleForm && 
                 <ModuleForm 
-                  onAdd = {handleAddModule}
+                  onPost = {handleModulePost}
+                  onPut = {handleModulePut}
                   onCancel = {cancelModuleForm}
                   module = {SingleModule}
                 />
@@ -134,7 +146,7 @@ function Home() {
                   ? <p>No Modules Found</p>
                   : <ModuleList 
                     modules={modules} 
-                    handlers={{addFavourite, removeFavourite, handleEdit}} 
+                    handlers={{addFavourite, removeFavourite, setEdit}} 
                 /> 
               }
         </>

@@ -5,7 +5,8 @@ function Card({module, handlers}) {
 
     const handleAdd = () => handlers.addFavourite(module.ModuleID);
     const handleRemove = () => handlers.removeFavourite(module.ModuleID);
-	const handleEdit = () => handlers.handleEdit(module);
+	const handleEdit = () => handlers.setEdit(module);
+    
 
     return ( 
         <div className="Card">
