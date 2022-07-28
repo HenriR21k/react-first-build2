@@ -54,9 +54,16 @@ function Home() {
     //rethink - needs ID to delete with, but we passed in the obj, maybe use newModule.oduleId
     const handleModuleDelete = async (newModule) => {
 
+        console.log("input of delete: "+JSON.stringify(newModule)); 
+        const outcome = await API.delete('Modules/'+newModule.ModuleID);
+        outcome.success && cancelModuleForm();
+        console.log("outcome of delete: "+JSON.stringify(outcome.response));        
+        fetchModules();
 
 
     }
+
+    
 
     const setEdit = (module) => {
       setSingleModule(module);
@@ -118,7 +125,7 @@ function Home() {
 
                 <Button
                  className = "favouriteButtons"
-                 img = /*"https://cdn-icons.flaticon.com/png/512/2589/premium/2589175.png?token=exp=1655390263~hmac=70dae7f22c500d0cc77ad17858ce2aee"*/ ""
+                 img = "https://cdn-icons.flaticon.com/png/512/2589/premium/2589175.png?token=exp=1655390263~hmac=70dae7f22c500d0cc77ad17858ce2aee"
                  alt = ""
                  title = "List Favourites"
                  onClick={listAllFavourites}
@@ -128,7 +135,7 @@ function Home() {
 
                 <Button
                 className = "addModuleButton"
-                img = ""
+                img = "https://img.icons8.com/ios-glyphs/344/add--v1.png"
                 alt = ""
                 title = "Add Module"
                 onClick= {setModuleFormVisibility}
@@ -146,7 +153,7 @@ function Home() {
                   ? <p>No Modules Found</p>
                   : <ModuleList 
                     modules={modules} 
-                    handlers={{addFavourite, removeFavourite, setEdit}} 
+                    handlers={{addFavourite, removeFavourite, setEdit, handleModuleDelete}} 
                 /> 
               }
         </>

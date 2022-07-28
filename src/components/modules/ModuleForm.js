@@ -146,7 +146,7 @@ function ModuleForm (props) {
           type = "Button"
         ></Button>
         <Button
-          className = ""
+          className = "cancelBtn"
           img = ""
           alt = ""
           title = "Cancel"

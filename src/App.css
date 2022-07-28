@@ -24,29 +24,3 @@
     padding: 10px;
 }
 
-.favouriteButton button {
-    font-size: 10px;
-    cursor: pointer;
-    color: #77002e;
-    border: 1px solid #77002e;
-    background-color: transparent;
-    border-radius: 4px;
-    padding: 10px;
-    margin-right: 20px;
-}
-
-img {
-    vertical-align: middle;
-    width: 20px;
-    
-}
-
-.list {
-    vertical-align: middle;
-    width: 20px;
-}
-
-.favouriteButton button:hover,
-.favouriteButton button:active {
-    background-color: #ffe2ed;
-  }

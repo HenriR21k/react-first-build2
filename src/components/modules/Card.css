@@ -2,8 +2,11 @@ div.Card {
     margin: 0;
     height: auto;
     width: 300px;
-    border: 1px solid Black;
+    /*border: 1px solid Black;*/
     border-radius: 5px;
+    background-color: white;
+    box-shadow: 10px 10px 8px #888888;;
+    
   }
   
   div.Card div.Moduleimage {
@@ -38,6 +41,7 @@ div.Card {
     text-align: center;
   }
   
+  /*
   .actions button {
     font: inherit;
     cursor: pointer;
@@ -52,3 +56,4 @@ div.Card {
   .actions button:active {
     background-color: #ffe2ed;
   }
+  */
