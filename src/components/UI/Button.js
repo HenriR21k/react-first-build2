@@ -1,11 +1,11 @@
-
+import './Button.css';
 
 export function Button(props) {
 
 
   return (
-          <button onClick={props.onClick}> 
-            <img className = {props.className} src = {props.img} alt = {props.alt}/> {props.title}
+          <button className = {props.className} onClick={props.onClick}> 
+            <img src = {props.img} alt = {props.alt}/> {props.title}
           </button>
   )
   }

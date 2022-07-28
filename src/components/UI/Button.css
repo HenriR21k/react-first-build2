@@ -1,0 +1,146 @@
+.favourite img {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.favourite {
+  background-color: transparent;
+  padding: 4px;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+
+}
+
+.editBtn img {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.editBtn {
+  background-color: transparent;
+  padding:0.25rem;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.deleteBtn {
+  background-color: transparent;
+  padding:0.25rem;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.deleteBtn img {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.ListAllModules img {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.ListAllModules {
+  font-size: 10px;
+  cursor: pointer;
+  color: #77002e;
+  border: 1px solid #77002e;
+  background-color: transparent;
+  border-radius: 4px;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.ListAllModules:hover,
+.ListAllModules:active {
+  background-color: #ffe2ed;
+}
+
+
+.favouriteButtons img {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.favouriteButtons {
+  font-size: 10px;
+  cursor: pointer;
+  color: #77002e;
+  border: 1px solid #77002e;
+  background-color: transparent;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.favouriteButtons :hover,
+.favouriteButtons :active {
+  background-color: #ffe2ed;
+}
+
+.addModuleButton img {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.addModuleButton {
+  font-size: 10px;
+  cursor: pointer;
+  color: #77002e;
+  border: 1px solid #77002e;
+  background-color: transparent;
+  border-radius: 4px;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.addModuleButton :hover,
+.addModuleButton :active {
+  background-color: #ffe2ed;
+}
+
+.submitBtn {
+  font-size: 10px;
+  cursor: pointer;
+  color: #77002e;
+  border: 1px solid #77002e;
+  background-color: transparent;
+  border-radius: 4px;
+  padding: 5px;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+.submitBtn :hover,
+.submitBtn :active {
+  background-color: #ffe2ed;
+}
+
+.cancelBtn {
+  font-size: 10px;
+  cursor: pointer;
+  color: #77002e;
+  border: 1px solid #77002e;
+  background-color: transparent;
+  border-radius: 4px;
+  padding: 5px;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+.cancelBtn :hover,
+.cancelBtn :active {
+  background-color: #ffe2ed;
+}
+
+
+
+
