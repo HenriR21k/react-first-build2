@@ -3,11 +3,13 @@ import { API } from '../api/apiRequest.js';
 import { useState, useEffect } from 'react';
 import { ModuleList } from '../modules/ModuleList.js';
 import ModuleForm from "../modules/ModuleForm";
+import { useNavigate } from 'react-router-dom';
 
 import Button from "../UI/Button";
 
 function Home() {
     // Properties ----------------------------
+    const navigate = useNavigate();
 
     // Hooks ---------------------------------
 
