@@ -16,9 +16,9 @@ function Layout(props) {
         <div className="centrepane">
             <Header />
             <Navbar />
-            <main>
+            <div>
                 {props.children}
-            </main>
+            </div>
             <Footer/>
         </div>
     )

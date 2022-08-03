@@ -1,0 +1,65 @@
+div.Card {
+  margin: 0;
+  height: auto;
+  width: 300px;
+  /*border: 1px solid Black;*/
+  border-radius: 5px;
+  background-color: white;
+  border-color: black 1px;
+  
+}
+
+div.Card div.Userimage {
+  width: 100%;
+  height: 50%;
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 25px;
+
+}
+
+div.Card div.Userimage img {
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  font-weight: bold;
+  
+}
+
+div.content {
+  text-align: center;
+  padding: 5px;
+}
+
+div.content > h1 {
+  font-size: 90%;
+  color: #2c292b;
+}
+
+div.content > p {
+  font-size: 80%;
+  color: #2c292b;
+}
+
+.actions {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+/*
+.actions button {
+  font: inherit;
+  cursor: pointer;
+  color: #77002e;
+  border: 1px solid #77002e;
+  background-color: transparent;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+}
+
+.actions button:hover,
+.actions button:active {
+  background-color: #ffe2ed;
+}
+*/

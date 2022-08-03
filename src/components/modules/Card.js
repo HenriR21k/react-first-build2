@@ -1,13 +1,20 @@
 import './Card.css';
 import Button from '../UI/Button';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 function Card({module, handlers}) {
+
+    const navigate = useNavigate();
 
     const handleAdd = () => handlers.addFavourite(module.ModuleID);
     const handleRemove = () => handlers.removeFavourite(module.ModuleID);
 	const handleEdit = () => handlers.setEdit(module);
     const handleDelete = () => handlers.handleModuleDelete(module);
+
+    const navigateToUsers = () => {
+        navigate("../MyUsers")
+    }
     
 
     return ( 
@@ -18,11 +25,11 @@ function Card({module, handlers}) {
             }
 
             <div className="Moduleimage">
-                <img src={module.ModuleImageURL} alt={module.ModuleName} />
+                <img src={module.ModuleImageURL} alt={module.ModuleName} onClick={navigateToUsers} />
             </div>
             
             <div className="content">
-                <h1>{module.ModuleName}</h1>
+                <h1 onClick={navigateToUsers}>{module.ModuleName}</h1>
                 <p>Module Code: {module.ModuleCode}</p>
                 <p>Module Level: {module.ModuleLevel}</p>
 								<p>Module Leader ID: {module.ModuleLeaderID} </p>

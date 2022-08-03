@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from "../UI/Button";
 
-function Home() {
+function MyModules() {
     // Properties ----------------------------
     const navigate = useNavigate();
 
@@ -163,4 +163,4 @@ function Home() {
 
 }
 
-export default Home;
+export default MyModules;

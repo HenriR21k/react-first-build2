@@ -2,19 +2,18 @@
 
 div#root {
     background: White;
-    min-height: 100vh;
+ 
     display: flex;
     justify-content: center;
     
 }
 
-div#root div.centrepane {
+ div.centrepane {
     background: whitesmoke;
     width: 100%;
     max-width: 1000px;
-
-    height: 3000px;
-
+    min-height: 100vh;
+    height: 100%;
     display: grid;
     grid-template-rows: auto auto 1fr auto;
     position: relative;
