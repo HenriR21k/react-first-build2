@@ -65,8 +65,6 @@ function MyModules() {
 
     }
 
-    
-
     const setEdit = (module) => {
       setSingleModule(module);
       setViewModuleForm(true); 

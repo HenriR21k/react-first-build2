@@ -79,7 +79,7 @@ function ModuleForm (props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(props.module.ModuleID);
+   // console.log(props.module.ModuleID);
     if (module.ModuleID) {
       
       {(moduleNameError === null && moduleCodeError === null)
