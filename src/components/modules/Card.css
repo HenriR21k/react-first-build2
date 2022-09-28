@@ -6,7 +6,14 @@ div.Card {
     border-radius: 5px;
     background-color: white;
     box-shadow: 10px 10px 8px #888888;;
+    margin-bottom: 10px;
     
+  }
+
+  div.Card:hover {
+   transform: translate(0px, -10px);
+   box-shadow: 10px 10px 8px #343333;;
+
   }
   
   div.Card div.Moduleimage {
